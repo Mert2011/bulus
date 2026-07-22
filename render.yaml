@@ -1,0 +1,11 @@
+# Render.com Blueprint — ücretsiz kalıcı deploy.
+# Adres: https://bulus.onrender.com  (isim doluysa Render sonuna küçük bir ek koyar)
+services:
+  - type: web
+    name: bulus
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true

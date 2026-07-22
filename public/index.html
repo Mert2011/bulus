@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>PocketMeet</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- MediaPipe Selfie Segmentation for the virtual background (optional, loaded from CDN). -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- ===================== LOBBY ===================== -->
+  <main id="lobby" class="screen active">
+    <div class="lobby-card">
+      <div class="brand">
+        <span class="dot"></span>
+        <h1>PocketMeet</h1>
+      </div>
+      <p class="tag">Küçük. Şifreli. Akıcı.</p>
+
+      <label class="field">
+        <span>Adın</span>
+        <input id="nameInput" type="text" placeholder="örn. Mert" maxlength="40" autocomplete="off" />
+      </label>
+
+      <div class="lobby-actions">
+        <button id="createBtn" class="btn primary">Toplantı Oluştur</button>
+        <div class="or"><span>veya</span></div>
+        <label class="field">
+          <span>Şifreyle Katıl</span>
+          <div class="join-row">
+            <input id="joinInput" type="text" placeholder="XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" />
+            <button id="joinBtn" class="btn">Katıl</button>
+          </div>
+        </label>
+      </div>
+
+      <div id="createdBox" class="created-box hidden">
+        <span>Toplantı şifren</span>
+        <div class="pw-row">
+          <code id="createdPw"></code>
+          <button id="copyPw" class="btn tiny" title="Kopyala">Kopyala</button>
+        </div>
+        <button id="enterCreated" class="btn primary full">Toplantıya Gir →</button>
+        <small>Bu şifreyi paylaştığın kişiler toplantıya katılabilir.</small>
+      </div>
+
+      <p id="lobbyError" class="error hidden"></p>
+    </div>
+    <footer class="lobby-foot">Uçtan uca şifreli • Sunucu görüntü/mesaj görmez</footer>
+  </main>
+
+  <!-- ===================== MEETING ===================== -->
+  <section id="meeting" class="screen">
+    <header class="topbar">
+      <div class="room-info">
+        <span class="live"><span class="dot"></span> Canlı</span>
+        <code id="roomCode"></code>
+        <button id="copyRoom" class="btn tiny">Kopyala</button>
+      </div>
+      <div id="netStatus" class="net">bağlanıyor…</div>
+    </header>
+
+    <div class="stage">
+      <div id="videoGrid" class="video-grid"></div>
+
+      <!-- Chat -->
+      <aside id="chatPanel" class="chat hidden">
+        <div class="chat-head"><span>Sohbet</span><button id="closeChat" class="icon-btn">✕</button></div>
+        <div id="chatLog" class="chat-log"></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" placeholder="Mesaj yaz…" autocomplete="off" maxlength="500" />
+          <button class="btn tiny primary" type="submit">Gönder</button>
+        </form>
+      </aside>
+    </div>
+
+    <!-- Control bar -->
+    <nav class="controls">
+      <button id="micBtn" class="ctrl" title="Mikrofon"><span class="ic">🎤</span><em>Ses</em></button>
+      <button id="camBtn" class="ctrl" title="Kamera"><span class="ic">🎥</span><em>Kamera</em></button>
+      <button id="screenBtn" class="ctrl" title="Ekran paylaş"><span class="ic">🖥️</span><em>Ekran</em></button>
+      <button id="bgBtn" class="ctrl" title="Arka plan"><span class="ic">🌆</span><em>Arka plan</em></button>
+      <button id="voiceBtn" class="ctrl" title="Ses efekti"><span class="ic">🎭</span><em>Ses efekti</em></button>
+      <button id="chatBtn" class="ctrl" title="Sohbet"><span class="ic">💬</span><em>Sohbet</em></button>
+      <button id="settingsBtn" class="ctrl" title="Cihazlar"><span class="ic">⚙️</span><em>Cihaz</em></button>
+      <button id="leaveBtn" class="ctrl danger" title="Ayrıl"><span class="ic">📞</span><em>Ayrıl</em></button>
+    </nav>
+
+    <!-- Background picker -->
+    <div id="bgMenu" class="popover hidden">
+      <h4>Arka plan</h4>
+      <div class="bg-opts">
+        <button class="bg-opt" data-bg="none">Kapalı</button>
+        <button class="bg-opt" data-bg="blur">Bulanık</button>
+        <button class="bg-opt" data-bg="office">Ofis</button>
+        <button class="bg-opt" data-bg="space">Uzay</button>
+        <button class="bg-opt" data-bg="beach">Sahil</button>
+      </div>
+      <small id="bgNote"></small>
+    </div>
+
+    <!-- Voice picker -->
+    <div id="voiceMenu" class="popover hidden">
+      <h4>Ses efekti</h4>
+      <div class="bg-opts">
+        <button class="v-opt" data-v="none">Normal</button>
+        <button class="v-opt" data-v="deep">Kalın</button>
+        <button class="v-opt" data-v="chipmunk">İnce</button>
+        <button class="v-opt" data-v="robot">Robot</button>
+      </div>
+    </div>
+
+    <!-- Device settings -->
+    <div id="settingsMenu" class="popover hidden">
+      <h4>Cihazlar</h4>
+      <label class="field"><span>Kamera</span><select id="camSelect"></select></label>
+      <label class="field"><span>Mikrofon</span><select id="micSelect"></select></label>
+    </div>
+  </section>
+
+  <!-- Toasts -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
