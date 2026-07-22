@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>PocketMeet</title>
+  <title>Buluş</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' rx='12' fill='%235b8cff'/><rect x='9' y='15' width='17' height='14' rx='4' fill='white'/><path d='M28 19.5 L35 15.5 V28.5 L28 24.5 Z' fill='white'/></svg>" />
   <link rel="stylesheet" href="style.css" />
   <!-- MediaPipe Selfie Segmentation for the virtual background (optional, loaded from CDN). -->
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
@@ -14,8 +15,21 @@
   <main id="lobby" class="screen active">
     <div class="lobby-card">
       <div class="brand">
-        <span class="dot"></span>
-        <h1>PocketMeet</h1>
+        <span class="logo" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="44" height="44" rx="12" fill="url(#logoGrad)"/>
+            <rect x="9" y="15" width="17" height="14" rx="4" fill="#fff"/>
+            <path d="M28 19.5 L35 15.5 V28.5 L28 24.5 Z" fill="#fff"/>
+            <circle cx="17.5" cy="22" r="3.2" fill="url(#logoGrad)"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#5b8cff"/>
+                <stop offset="1" stop-color="#7c5bff"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <h1>Buluş</h1>
       </div>
       <p class="tag">Küçük. Şifreli. Akıcı.</p>
 

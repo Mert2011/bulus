@@ -39,8 +39,13 @@ body {
   animation: rise .5s cubic-bezier(.2,.8,.2,1);
 }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand h1 { font-size: 22px; letter-spacing: -.5px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand h1 { font-size: 26px; letter-spacing: -.6px; font-weight: 800;
+  background: linear-gradient(135deg, #fff, #b9c6ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.logo { display: inline-flex; }
+.logo svg { border-radius: 12px; filter: drop-shadow(0 6px 16px rgba(91,140,255,.45));
+  animation: rise .5s cubic-bezier(.2,.8,.2,1); transition: transform .25s; }
+.logo svg:hover { transform: rotate(-4deg) scale(1.05); }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 12px var(--ok); animation: pulse 2s infinite; }
 @keyframes pulse { 50% { opacity: .4; } }
 .tag { color: var(--muted); font-size: 13px; margin: 4px 0 20px; }
